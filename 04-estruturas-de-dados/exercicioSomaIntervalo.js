@@ -8,18 +8,27 @@ const soma = (data) => {
     return total
 }
 
-const range = (...arguments) => {
-    let inicio = arguments[0]
-    let fim = arguments[1]
-    let incremento = arguments[2] || 1
+const range = (inicio, fim, incremento = inicio < fim ? 1 : -1) => {
+    let data = []
 
-    const data = []
-
-    for (let i = 0; inicio <= fim; i++) {
-        data.push(inicio += incremento)
+    if (incremento > 0) {
+        for (let i = inicio; i <= fim; i += incremento) {
+            data.push(i)
+        }
+    } else {
+        for (let i = inicio; i >= fim; i += incremento) {
+            data.push(i)
+        }
     }
+
+
 
     return data
 }
 
-console.log('RESULTADO', range(1, 10, 2))
+console.log(range(1, 10))
+// → [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+console.log(range(5, 2, -1));
+// → [5, 4, 3, 2]
+console.log(soma(range(1, 10)));
+// → 55
